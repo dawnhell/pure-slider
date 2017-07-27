@@ -1,0 +1,1 @@
+!function(n,t){n(function(){n("div.choose-buttons").find("button").on("click",function(){"js"===n(this).data("type")&&n(".slider").Slider(),"css"===n(this).data("type")&&console.log("css")})})}(jQuery),function(n,t){n.fn.Slider=function(){return this.each(function(t,i){n(i).data("slider",new o(i))})};var o=function(n){console.log(n)};o.prototype.init=function(){}}(jQuery);
