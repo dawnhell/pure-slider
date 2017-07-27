@@ -11,6 +11,7 @@
     this.$imageTitleList   = this.$container.find('.image-title-list');
     this.$imageTitleListUl = this.$imageTitleList.find('ul');
     this.$imageSlider      = this.$container.find('.image-slider');
+    this.$imageSliderUl    = this.$imageSlider.find('ul');
 
     this.init();
   };
@@ -25,24 +26,47 @@
     this.$imageTitleList.css('height', this.imageTitleListItemHeight * 3);
     this.$imageTitleList.css('overflow-y', 'hidden');
 
+    for(var i = 0; i < this.$sectionSwitch.children().length; ++i) {
+      this.$sectionSwitch.children().eq(i).attr('data-section', i);
+    }
+
+    for(var i = 0; i < this.$imageTitleListUl.children().length; ++i) {
+      this.$imageTitleListUl.children().eq(i).attr('data-number', i);
+    }
+
     this.bindSectionSwitch();
+    this.setAndBindSliderSwitch();
   };
 
   Slider.prototype.bindSectionSwitch = function() {
     var self = this;
 
     this.$sectionSwitch.on('click', '.image-section', function() {
-      // self.$imageTitleList.scrollTop(parseInt($(this).data('section')) * self.imageTitleListItemHeight * 3);
+      console.log(self.$imageTitleListUl);
       self.$imageTitleListUl.animate({
-        top: '150px'
-        // transform: 'translateY(' + parseInt($(this).data('section')) * self.imageTitleListItemHeight * 3 + ')'
-      }/*, {
-        step: function(now, fx) {
-          $(this).css('transform', 'translateY(' + now + 'px)')
-        },
-        duration:'slow'
-      }*/, 400);
+        'margin-top': -parseInt($(this).data('section')) * self.imageTitleListItemHeight * 3
+      }, 400);
 
     });
   };
+
+  Slider.prototype.setAndBindSliderSwitch = function() {
+    var self = this;
+
+    this.sliderImageWidth = this.$imageSlider.find('.image').width();
+    this.sliderContainerWidth = this.sliderImageWidth * this.$imageSliderUl.children().length;
+
+    this.$imageSlider.css('width', this.sliderImageWidth);
+    this.$imageSlider.css('overflow-x', 'hidden');
+    this.$imageSliderUl.css('width', this.sliderContainerWidth);
+    this.$imageSliderUl.find('li').css('float', 'left');
+
+    this.$imageTitleListUl.on('click', 'li', function() {
+      console.log("hello");
+      console.log($(this).data('number'));
+      self.$imageSliderUl.animate({
+        'margin-left': -$(this).data('number') * self.sliderImageWidth
+      }, 400);
+    });
+  }
 })(jQuery);
