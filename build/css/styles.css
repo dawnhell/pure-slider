@@ -389,6 +389,24 @@ template {
 [hidden] {
   display: none; }
 
+.choose-buttons {
+  text-align: center; }
+  .choose-buttons button {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 18px;
+    margin: 0 10px;
+    padding: 5px 20px;
+    transition: all .4s; }
+    .choose-buttons button:focus {
+      outline: none; }
+    .choose-buttons button:hover {
+      background-color: deepskyblue;
+      border: 1px solid blueviolet;
+      color: #fff; }
+
 .slider {
   max-width: 1200px;
   width: 100%;
@@ -402,25 +420,11 @@ template {
     display: block;
     clear: both;
     overflow: hidden; }
-  .slider .choose-buttons button {
-    background-color: #eee;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 18px;
-    margin: 0 10px;
-    padding: 5px 20px;
-    transition: all .4s; }
-    .slider .choose-buttons button:focus {
-      outline: none; }
-    .slider .choose-buttons button:hover {
-      background-color: deepskyblue;
-      border: 1px solid blueviolet;
-      color: #fff; }
   .slider .section-switch {
     float: left;
     display: none; }
     .slider .section-switch .image-section {
+      display: block;
       width: 80px;
       height: 80px;
       font-size: 30px;
@@ -428,7 +432,9 @@ template {
       margin-bottom: 15px;
       border: 2px solid #333;
       cursor: pointer;
-      transition: background .4s; }
+      color: #333;
+      transition: background .4s;
+      text-decoration: none; }
       .slider .section-switch .image-section:hover {
         background: #eee; }
   .slider .image-title-list {
@@ -470,3 +476,25 @@ template {
           display: block;
           width: 100%;
           padding-top: 70%; }
+  .slider.css-only .section-switch {
+    display: block; }
+  .slider.css-only .image-title-list {
+    display: block;
+    height: 150px;
+    overflow-y: hidden; }
+    .slider.css-only .image-title-list ul {
+      transition: margin .4s; }
+    .slider.css-only .image-title-list a[id='first']:target ~ ul {
+      margin-top: 0; }
+    .slider.css-only .image-title-list a[id='second']:target ~ ul {
+      margin-top: -150px; }
+    .slider.css-only .image-title-list a[id='third']:target ~ ul {
+      margin-top: -300px; }
+  .slider.css-only .image-slider {
+    display: block;
+    width: 400px;
+    overflow-x: hidden; }
+    .slider.css-only .image-slider ul {
+      width: 3600px; }
+      .slider.css-only .image-slider ul li {
+        float: left; }
