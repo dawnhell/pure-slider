@@ -17,10 +17,6 @@
   };
 
   Slider.prototype.init = function() {
-    this.$sectionSwitch .css('display', 'block');
-    this.$imageTitleList.css('display', 'block');
-    this.$imageSlider   .css('display', 'block');
-
     this.imageTitleListLength = this.$imageTitleListUl.children().length;
     this.imageTitleListItemHeight = this.$imageTitleListUl.height() / this.imageTitleListLength;
     this.$imageTitleList.css('height', this.imageTitleListItemHeight * 3);
@@ -42,7 +38,6 @@
     var self = this;
 
     this.$sectionSwitch.on('click', '.image-section', function() {
-      console.log(self.$imageTitleListUl);
       self.$imageTitleListUl.animate({
         'margin-top': -parseInt($(this).data('section')) * self.imageTitleListItemHeight * 3
       }, 400);
@@ -62,8 +57,6 @@
     this.$imageSliderUl.find('li').css('float', 'left');
 
     this.$imageTitleListUl.on('click', 'li', function() {
-      console.log("hello");
-      console.log($(this).data('number'));
       self.$imageSliderUl.animate({
         'margin-left': -$(this).data('number') * self.sliderImageWidth
       }, 400);
